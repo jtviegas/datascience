@@ -1,0 +1,3 @@
+fredapi
+pandas_datareader
+ipykernel
