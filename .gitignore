@@ -160,3 +160,13 @@ cython_debug/
 #.idea/
 .secrets.json
 .DS_Store
+.secrets
+
+tests-results.xml
+.local_variables
+.vscode
+mnist_784
+data/
+experiments/study/
+
+

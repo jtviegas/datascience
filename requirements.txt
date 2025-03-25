@@ -1,9 +1,44 @@
-fredapi
-pandas-datareader==0.10.0
+# --- dev ---
+pytest==7.4.3
+autoflake==2.2.1
+black~=23.11.0
+isort~=5.12.0
+pytest-cov~=4.1.0
+pytest-mock~=3.14.0
+hatch~=1.14.0
+
 ipykernel
-TA-Lib
-ffn
-pandas
-Nasdaq-Data-Link
-yfinance
-mplfinance==0.12.10b0
+# fredapi
+#pandas-datareader #==0.10.0
+#TA-Lib
+#ffn
+pandas==2.2.3
+numpy==2.1.3
+scipy
+scikit-learn
+matplotlib
+# Nasdaq-Data-Link
+# yfinance
+# mplfinance #==0.12.10b0
+# tgedr-dataops
+seaborn
+torch==2.6.0
+torchvision==0.21.0
+torchaudio==2.6.0
+# gdown
+# mlxtend
+# liac-arff
+# pytorch-lightning
+tensorboard
+# torchtext
+# torchdata
+# portalocker
+transformers
+# tensorflow
+datasets
+
+# tf-keras
+umap-learn
+bertviz
+seqeval
+

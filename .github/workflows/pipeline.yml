@@ -1,0 +1,33 @@
+name: pipelines
+on: push
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: '0'
+    - uses: actions/setup-java@v4
+      with:
+        distribution: 'corretto'
+        java-version: '8'
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    - name: install requirements
+      run: ./helper.sh reqs
+    - name: check code
+      run: ./helper.sh code_check  
+    - name: run unit tests
+      run: ./helper.sh test
+    - name: check coverage
+      run: ./helper.sh check_coverage 80
+    - name: check lint
+      run: ./helper.sh code_check
+    - name: build
+      run: ./helper.sh build
+    - name: publish
+      if: ${{ startsWith(github.ref, 'refs/tags/') }}
+      env:
+        HATCH_INDEX_AUTH: ${{ secrets.HATCH_INDEX_AUTH }}
+      run: ./helper.sh publish
