@@ -119,6 +119,7 @@ usage() {
       - code_lint
       - build
       - publish
+      - tag <version> <commit_hash>
 EOM
   exit 1
 }
@@ -153,6 +154,8 @@ case "$1" in
   publish)
     python_hatch_publish
     ;;
+  tag)
+    git_tag_and_push "$2" "$3"
   *)
     usage
     ;;
