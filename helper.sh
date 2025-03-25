@@ -156,6 +156,7 @@ case "$1" in
     ;;
   tag)
     git_tag_and_push "$2" "$3"
+    ;;
   *)
     usage
     ;;
