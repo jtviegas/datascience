@@ -2,7 +2,7 @@ name: pipelines
 on: push
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: ubuntu-22.04
     steps:
     - uses: actions/checkout@v4
       with:
