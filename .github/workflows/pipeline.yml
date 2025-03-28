@@ -16,6 +16,10 @@ jobs:
         python-version: '3.11'
     - name: install requirements
       run: ./helper.sh reqs
+    - name: Run Safety CLI to check for vulnerabilities
+      uses: pyupio/safety-action@v1
+      with:
+        api-key: ${{ secrets.SAFETY_API_KEY }}
     - name: check code
       run: ./helper.sh code_check  
     - name: run unit tests
