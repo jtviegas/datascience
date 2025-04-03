@@ -21,7 +21,7 @@ scipy
 scikit-learn
 matplotlib
 # Nasdaq-Data-Link
-# yfinance
+yfinance
 # mplfinance #==0.12.10b0
 # tgedr-dataops
 seaborn
@@ -44,4 +44,10 @@ datasets
 umap-learn
 bertviz
 seqeval
+
+langchain-community
+langchain-openai
+langchain
+openai
+python-dotenv
 

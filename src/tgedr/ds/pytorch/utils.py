@@ -44,3 +44,5 @@ def get_device():
         print("[get_device] MPS device not found!")
         result = DEVICE_CPU
     return result
+
+
