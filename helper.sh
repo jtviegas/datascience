@@ -104,6 +104,37 @@ build(){
   echo "[build] ...done."
 }
 
+get_latest_tag() {
+    git fetch --tags > /dev/null 2>&1
+    latest_tag=$(git describe --tags --abbrev=0 2>/dev/null)
+    
+    if [ -z "$latest_tag" ]; then
+        echo "No tags found"
+        exit 1
+    else
+        echo "$latest_tag"
+    fi
+}
+
+changelog(){
+  info "[changelog|in] ($1)"
+
+  local FILE="CHANGELOG"
+  if [ ! -z $1 ]; then
+    FILE="$1"
+  fi
+
+  _pwd=`pwd`
+  cd "$this_folder"
+
+  git log --pretty=format:"- %h %as %d %s" > "$FILE"
+  result="$?"
+
+  cd "$_pwd"
+  [ "$result" -ne "0" ] && err "[changelog|out]  => ${result}" && exit 1
+  echo "[changelog|out] => $result"
+}
+
 # -------------------------------------
 usage() {
   cat <<EOM
@@ -120,6 +151,8 @@ usage() {
       - build
       - publish
       - tag <version> <commit_hash>
+      - changelog [outputFile]    default file is CHANGELOG
+      - get_latest_tag
 EOM
   exit 1
 }
@@ -156,6 +189,12 @@ case "$1" in
     ;;
   tag)
     git_tag_and_push "$2" "$3"
+    ;;
+  changelog)
+    changelog "$2"
+    ;;
+  get_latest_tag)
+    get_latest_tag
     ;;
   *)
     usage
