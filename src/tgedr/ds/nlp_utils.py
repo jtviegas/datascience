@@ -115,23 +115,23 @@ class UtilsNlp:
 
         return result
 
-    def get_nouns_number(text, model, method="lemma"):
-        nouns = []
-        doc = model(text)
-        for token in doc:
-        if (token.pos_ == "NOUN"):
-        if method == "lemma":
-        if token.lemma_ != token.text:
-        nouns.append((token.text,
-        Noun_number.PLURAL))
-        else:
-        nouns.append((token.text,
-        Noun_number.SINGULAR))
-        elif method == "morph":
-        if token.morph.get("Number") == "Sing":
-        nouns.append((token.text,
-        Noun_number.PLURAL))
-        else:
-        nouns.append((token.text,
-        Noun_number.SINGULAR))
-        return nouns
+    # def get_nouns_number(text, model, method="lemma"):
+    #     nouns = []
+    #     doc = model(text)
+    #     for token in doc:
+    #     if (token.pos_ == "NOUN"):
+    #     if method == "lemma":
+    #     if token.lemma_ != token.text:
+    #     nouns.append((token.text,
+    #     Noun_number.PLURAL))
+    #     else:
+    #     nouns.append((token.text,
+    #     Noun_number.SINGULAR))
+    #     elif method == "morph":
+    #     if token.morph.get("Number") == "Sing":
+    #     nouns.append((token.text,
+    #     Noun_number.PLURAL))
+    #     else:
+    #     nouns.append((token.text,
+    #     Noun_number.SINGULAR))
+    #     return nouns
