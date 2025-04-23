@@ -19,6 +19,7 @@ Usage:
 
 """
 
+
 def read_text_file(filename):
     """reads text file content
 
@@ -32,5 +33,5 @@ def read_text_file(filename):
         ...
 
     """
-    file = open(filename, "r", encoding="utf-8") 
+    file = open(filename, "r", encoding="utf-8")
     return file.read()

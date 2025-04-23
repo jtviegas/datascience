@@ -100,3 +100,9 @@ def temporary_folder() -> str:
     if not os.path.exists(_folder):
         os.makedirs(_folder)
     return _folder
+
+
+@pytest.fixture
+def reddit_env(monkeypatch):
+    monkeypatch.setenv("API_CLIENTID", "xpto")
+    monkeypatch.setenv("API_SECRET", "xpto")
