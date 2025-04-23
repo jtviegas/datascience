@@ -1,3 +1,5 @@
+[![pipelines](https://github.com/jtviegas/datascience/actions/workflows/pipeline.yml/badge.svg)](https://github.com/jtviegas/datascience/actions/workflows/pipeline.yml)
+
 # datascience
 data science experiments
 
