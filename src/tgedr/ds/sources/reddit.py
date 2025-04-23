@@ -1,3 +1,22 @@
+"""
+Module Name: reddit
+Description: source implementation constructs for reddit data processing
+Author:
+Date:
+Version:
+
+Dependencies:
+- praw==7.8.1
+
+Environment Variables:
+- ...
+
+Usage:
+    >>> from tgedr.ds.sources.source import Source
+    >>> class RedditSrc(Source):
+    >>> ...
+
+"""
 from datetime import datetime, timezone
 from typing import Any, Dict, Optional
 
@@ -6,12 +25,13 @@ from praw import Reddit
 from tgedr.ds.sources.source import Source
 
 
+# pylint: disable=too-few-public-methods
 class RedditSrc(Source):
     """source implementing class retrieving posts from reddit"""
 
     __USER_AGENT = "tgedr:datascience by u/USER"
     ENVVAR_API_CLIENTID = "API_CLIENTID"
-    ENVVAR_API_SECRET = "API_SECRET"
+    ENVVAR_API_SECRET = "API_SECRET"  # nosec B105: Disable bandit check for this line
     CONTEXT_USER = "REDDIT_USER"
     CONTEXT_PSWD = "REDDIT_PSWD"
     CONTEXT_QUERY = "QUERY_STRING"
@@ -24,6 +44,7 @@ class RedditSrc(Source):
     def __init__(self, config: Optional[Dict[str, Any]] = None):
         self._client_id = self._get_param(self.ENVVAR_API_CLIENTID, config)
         self._client_secret = self._get_param(self.ENVVAR_API_SECRET, config)
+        super().__init__(config=config)
 
     def _format_submission(self, submission, context) -> dict:
         result = {
@@ -44,10 +65,10 @@ class RedditSrc(Source):
         query_string = self._get_param(self.CONTEXT_QUERY, context)
 
         sort = self._get_param(
-            self.CONTEXT_SORT, map=context, default=self.__DEFAULT_SORT
+            self.CONTEXT_SORT, context=context, default=self.__DEFAULT_SORT
         )
-        filter = self._get_param(
-            self.CONTEXT_FILTER, map=context, default=self.__DEFAULT_FILTER
+        time_filter = self._get_param(
+            self.CONTEXT_FILTER, context=context, default=self.__DEFAULT_FILTER
         )
 
         reddit = Reddit(
@@ -60,7 +81,7 @@ class RedditSrc(Source):
 
         result = []
         submissions = reddit.subreddit("all").search(
-            query_string, sort=sort, time_filter=filter
+            query_string, sort=sort, time_filter=time_filter
         )
         for submission in submissions:
             if submission.is_self:

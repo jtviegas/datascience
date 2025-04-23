@@ -1,10 +1,34 @@
+"""
+Module Name: 
+Description: code utils for NLP
+Author:
+Date:
+Version:
+
+Dependencies:
+- ...
+
+Environment Variables:
+- ...
+
+Usage:
+    >>> from tgedr.ds.pytorch.utils import get_device
+    >>> DEVICE = get_device()
+    >>> print(DEVICE.type)
+    mps
+
+"""
 from enum import Enum
 from typing import Any
 
 import spacy
 
 
-class Noun_number(Enum):
+class NounNumber(Enum):
+    """
+    Utility enum for noun numbering
+    """
+
     SINGULAR = 1
     PLURAL = 2
 
@@ -62,7 +86,7 @@ class UtilsNlp:
         doc = self.model(text)
         return [token.text for token in doc]
 
-    def tagWords(self, text, model=None):
+    def tag_words(self, text, model=None):
         """
         tag the words in the input text.
 

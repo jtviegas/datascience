@@ -104,5 +104,8 @@ def temporary_folder() -> str:
 
 @pytest.fixture
 def reddit_env(monkeypatch):
+    """
+    sets up environment vars for testing Reddit praw library
+    """
     monkeypatch.setenv("API_CLIENTID", "xpto")
     monkeypatch.setenv("API_SECRET", "xpto")

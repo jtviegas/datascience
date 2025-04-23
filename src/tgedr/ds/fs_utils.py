@@ -20,6 +20,7 @@ Usage:
 """
 
 
+# pylint: disable=consider-using-with
 def read_text_file(filename):
     """reads text file content
 
